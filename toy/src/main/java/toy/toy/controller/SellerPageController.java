@@ -45,7 +45,7 @@ public class SellerPageController {
         model.addAttribute("totalPrice", total);
         model.addAttribute("seller", seller);
         model.addAttribute("userItem", userItem);
-        return "seller/sellerPage";
+        return "/seller/sellerPage";
     }
 
     @GetMapping("/seller/{id}/history")

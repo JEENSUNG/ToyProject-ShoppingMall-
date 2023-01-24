@@ -69,15 +69,15 @@ public class CartService {
     }
 
     public List<History> getHistoriesForUser(User user){
-        if(historyRepository.findHistoryByUser(user) == null){
-            History history = new History();
+        if(historyRepository.findAllHistoryByUser(user) == null){
+            return null;
         }
         return historyRepository.findAllHistoryByUser(user);
     }
 
     public List<History> getHistoryForSeller(User user){
-        if(historyRepository.findHistoryBySeller(user) == null){
-            History history = new History();
+        if(historyRepository.findAllHistoryBySeller(user) == null){
+            return null;
         }
         return historyRepository.findAllHistoryBySeller(user);
     }

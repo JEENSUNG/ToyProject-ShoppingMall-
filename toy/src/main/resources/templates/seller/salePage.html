@@ -1,10 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>판매확인</title>
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/css/styles.css" rel="stylesheet"/>
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
 </head>
 <body>
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="#">이재윤 상점</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/main}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" th:href="@{/item/upload}">upload</a></li>
+
+            </ul>
+            <form class="d-flex">
+                <a class="btn btn-outline-dark" th:href="@{/seller/{id}(id=${seller.getId()})}">
+                    판매관리
+                </a>
+                <a class="btn btn-outline-dark" th:href="@{/user/{id}(id=${seller.getId()})}"
+                   th:text="|${seller.getName()}님 환영합니다.|">
+                    ~~님 환영
+                </a>
+
+                <a class="btn btn-outline-dark" href="#" th:text="|현재잔액: ${seller.getMoney()} ₩|">
+                    현재잔액 : 10000 ₩
+                </a>
+                <a class="btn btn-outline-dark" th:href="@{/logout}">
+                    로그아웃
+                </a>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">판매목록</h1>
+    </div>
+
+    <div class="row g-5 mt-5">
+        <div class="col-md-7 col-lg-8 container">
+            <div class="row g-3">
+
+                <div class="col-12">
+                    <label for="user" class="form-label">구매자</label>
+                    <input type="text" class="form-control" id="user" name="user" readonly th:value="${user.name}">
+                    <div class="invalid-feedback">
+                        Item name is required.
+                    </div>
+                </div>
+
+
+                <div class="col-12">
+                    <label for="item_name" class="form-label">상품명</label>
+                    <input type="text" class="form-control" id="item_name" name="item_name" readonly th:value="${history.itemName}">
+                    <div class="invalid-feedback">
+                        Price is empty.
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <label for="count" class="form-label">구매수량</label>
+                    <input type="text" class="form-control" id="count" name="count" readonly th:value="${history.itemCount}">
+                    <div class="invalid-feedback">
+                        Stock is empty.
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <label for="totalPrice" class="form-label">지불금액</label>
+                    <input type="text" class="form-control" id="totalPrice" name="totalPrice" readonly th:value="${history.itemCount * history.itemPrice}">
+                    <div class="invalid-feedback">
+                        Text is empty.
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <label for="address" class="form-label">주소</label>
+                    <input type="text" class="form-control" id="address" name="address" readonly th:value="${user.address}">
+                    <div class="invalid-feedback">
+                        Stock is empty.
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="my-4">
+            <button class="w-100 btn btn-dark btn-lg mb-3" type="button">배송확인</button>
+            <!--                    <button class="w-100 btn btn-secondary btn-lg" th:href="@{memberlist}">목록으로</button>-->
+        </div>
+    </div>
+</main>
 
 </body>
 </html>

@@ -25,7 +25,6 @@ public class User {
     @Column(nullable = false, unique = true)
     private String username;
 
-    @JsonIgnore
     @Column(nullable = false)
     private String password;
 
@@ -52,7 +51,7 @@ public class User {
     @OneToMany(mappedBy = "seller")
     private List<History> sellerHistory = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user")
+    @OneToOne(mappedBy = "user")
     private Cart cart;
 
     @DateTimeFormat(pattern = "yyyy-mm-dd")

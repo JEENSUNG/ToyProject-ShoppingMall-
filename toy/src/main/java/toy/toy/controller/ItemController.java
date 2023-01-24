@@ -50,7 +50,7 @@ public class ItemController {
         }
         model.addAttribute("items", items);
         model.addAttribute("user", login);
-        return "mainLogin";
+        return "mainLoginPage";
     }
 
     @GetMapping("/item/{id}")

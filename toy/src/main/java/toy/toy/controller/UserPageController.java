@@ -39,7 +39,7 @@ public class UserPageController {
             Cart cart = cartFinderService.findCart(loginUser.getId());
             List<Cart_Item> userItems = cartFinderService.findUserCartItems(cart);
             int count = userItems.size();
-            model.addAttribute("count", count);
+            model.addAttribute("cartCount", count);
             model.addAttribute("user", userPageService.findUser(id));
             return "/user/userPage";
         }else{
@@ -47,8 +47,17 @@ public class UserPageController {
         }
     }
 
-    @GetMapping("/user/{id}/update")
-    public String userPageModify(@PathVariable("id") long id, User user, MultipartFile file) throws Exception{
+    @GetMapping("/user/{id}/modify")
+    public String userPageModify(@PathVariable("id") long id, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+        if(principalDetails.getUser().getId() == id){
+            model.addAttribute("user", userPageService.findUser(id));
+            return "/user/userPageEdit";
+        }
+        return "redirect:/main";
+    }
+
+    @PostMapping("/user/{id}/update")
+    public String userPageModifyProcess(@PathVariable("id") long id, Model model, MultipartFile file, User user) throws Exception{
         userPageService.userPageModify(user, file);
         return "redirect:/user/{id}";
     }

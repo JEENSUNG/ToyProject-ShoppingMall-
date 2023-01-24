@@ -3,27 +3,28 @@ package toy.toy.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import toy.toy.domain.User;
 
+@Getter
+@Setter
 public class UserDto {
-
-    @Getter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class Request{
-        private String username;
-        private String password;
-        private String name;
-        private String email;
-        private String address;
-        private String phone;
-    }
-
-    @Getter
-    public static class Response{
-        private String username;
-        private String name;
-        private String email;
-        private String address;
-        private String phone;
+    private String username;
+    private String password;
+    private String email;
+    private String name;
+    private String address;
+    private String phone;
+    private String role;
+    public User toEntity() {
+        return User.builder()
+                .username(username)
+                .password(password)
+                .email(email)
+                .name(name)
+                .address(address)
+                .phone(phone)
+                .role(role)
+                .build();
     }
 }

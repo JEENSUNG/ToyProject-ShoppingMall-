@@ -7,5 +7,5 @@ import toy.toy.dto.UserDto;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface UserMapper {
-    User UserRequestToUser(UserDto.Request dto);
+//    User UserRequestToUser(UserDto.Request dto);
 }
